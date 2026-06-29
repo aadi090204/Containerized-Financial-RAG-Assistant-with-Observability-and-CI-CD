@@ -1,34 +1,69 @@
+# ==========================
 # Environment files
+# ==========================
 .env
-**/.env
 *.env
+**/.env
 
+# ==========================
 # Python virtual environments
+# ==========================
 venv/
 .venv/
+env/
+backend/venv/
 **/venv/
 **/.venv/
-backend/venv/
 
+# ==========================
 # Python cache
+# ==========================
 __pycache__/
-**/__pycache__/
 *.pyc
 *.pyo
 *.pyd
+**/__pycache__/
 
-# Local uploaded files and vector database
-backend/uploads/
+# ==========================
+# ChromaDB and uploads
+# ==========================
 backend/chroma_db/
-uploads/
+backend/uploads/
 chroma_db/
+uploads/
 
-# Editor and OS files
-.vscode/
-.idea/
-.DS_Store
-desktop.ini
-Thumbs.db
-
+# ==========================
+# Frontend
+# ==========================
 frontend/node_modules/
 frontend/dist/
+
+# ==========================
+# Logs
+# ==========================
+*.log
+
+# ==========================
+# Backup files
+# ==========================
+*.tar
+*.tar.gz
+*.zip
+
+# ==========================
+# IDE files
+# ==========================
+.vscode/
+.idea/
+
+# ==========================
+# OS files
+# ==========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================
+# Temporary notes
+# ==========================
+reading

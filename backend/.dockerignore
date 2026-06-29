@@ -1,0 +1,6 @@
+__pycache__
+*.pyc
+.env
+chroma_db
+chroma_db_backup.tar.gz
+.git
