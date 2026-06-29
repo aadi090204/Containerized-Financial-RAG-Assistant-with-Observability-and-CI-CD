@@ -5,15 +5,18 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: rag-backend
+
     ports:
       - "8000:8000"
+
     volumes:
       - ./backend/chroma_db:/app/chroma_db
       - ./backend/uploads:/app/uploads
-    env_file:
-      - .env
+
     environment:
-      - BASE_DIR=/app
+      BASE_DIR: /app
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+
     restart: unless-stopped
 
     healthcheck:
@@ -26,9 +29,13 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+
     container_name: rag-frontend
+
     ports:
       - "3000:80"
+
     depends_on:
       - backend
+
     restart: unless-stopped

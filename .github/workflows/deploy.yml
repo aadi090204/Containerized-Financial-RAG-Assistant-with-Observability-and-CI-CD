@@ -1,4 +1,4 @@
-name: Finance-RAG-CI-CD
+name: Docker CI/CD Pipeline
 
 on:
   push:
@@ -6,34 +6,33 @@ on:
       - main
 
 jobs:
-  build-test-deploy:
+  build-and-test:
+
     runs-on: ubuntu-latest
 
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
     steps:
-      - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          pip install -r requirements.txt
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Build backend container
-        run: |
-          docker build -t finance-backend ./backend
+      - name: Build Docker Images
+        run: docker compose build
 
-      - name: Build frontend container
-        run: |
-          docker build -t finance-frontend ./frontend
+      - name: Start Containers
+        run: docker compose up -d
 
-      - name: Run docker compose
-        run: |
-          docker compose up -d
+      - name: Wait for Backend
+        run: sleep 30
 
-      - name: Health check
-        run: |
-          curl http://localhost:8000/health
+      - name: Test Backend Health
+        run: curl http://localhost:8000/health
+
+      - name: Stop Containers
+        if: always()
+        run: docker compose down
