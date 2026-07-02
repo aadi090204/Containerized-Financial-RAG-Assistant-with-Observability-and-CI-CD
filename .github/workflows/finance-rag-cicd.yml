@@ -122,18 +122,48 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
+
           script: |
             set -e
+
             cd ${{ secrets.EC2_TARGET_PATH }}
+
+            echo "Cleaning old dangling images..."
+            docker image prune -af || true
+
+            echo "Docker disk usage before pull:"
+            docker system df
+
+            echo "Pulling latest images..."
             docker compose -f docker-compose.prod.yml pull
+
+            echo "Recreating containers..."
             docker compose -f docker-compose.prod.yml up -d --force-recreate --remove-orphans
+
+            echo "Waiting for application..."
+
             for i in {1..30}; do
               if curl -fs http://localhost/health >/dev/null; then
-                break
+                echo "Application is healthy."
+                curl http://localhost/health
+
+                echo "Running containers:"
+                docker ps
+
+                echo "Final Docker disk usage:"
+                docker system df
+
+                echo "Deployment completed successfully."
+                exit 0
               fi
+
+              echo "Attempt $i/30..."
               sleep 5
             done
-            curl -f http://localhost/health
-            docker image prune -f
-            docker system df
+
+            echo "Deployment failed."
+
             docker ps
+            docker logs rag-backend --tail=100
+
+            exit 1
