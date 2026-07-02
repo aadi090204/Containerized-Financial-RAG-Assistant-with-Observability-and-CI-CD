@@ -311,95 +311,103 @@ financial-rag-platform/
 
 # 📸 Project Walkthrough
 
-The following screenshots demonstrate the complete lifecycle of the application—from document upload to AI inference, production deployment and monitoring.
+The following screenshots showcase the complete lifecycle of the application—from uploading financial documents and generating AI-powered responses to production deployment, monitoring, and cloud infrastructure.
+
+---
 
 ## 1️⃣ Live Application Running on AWS EC2
 
-> Demonstrates the application successfully deployed on AWS.
+Demonstrates the production application successfully deployed on an AWS EC2 instance.
 
-```markdown
 ![Live Application](screenshots/application-home-aws.png)
-```
 
 ---
 
 ## 2️⃣ Upload Financial Document
 
-```markdown
+Upload a financial PDF to build the knowledge base for Retrieval-Augmented Generation (RAG).
+
 ![Upload Success](screenshots/pdf-upload-success.png)
-```
 
 ---
 
 ## 3️⃣ AI Generated Response with Retrieved Source Chunks
 
-```markdown
+Question answering powered by semantic search with source-grounded responses generated using Google Gemini.
+
 ![AI Response](screenshots/rag-answer-with-sources.png)
-```
 
 ---
 
 ## 4️⃣ Reset Vector Database
 
-```markdown
-![Vector Reset](screenshots/vector-db-reset.png)
-```
+Clear all uploaded documents and vector embeddings to start with a fresh knowledge base.
+
+![Vector Database Reset](screenshots/vector-db-reset.png)
 
 ---
 
 ## 5️⃣ Production Docker Containers
 
-```markdown
+Docker Compose running the complete production stack, including the frontend, backend, Nginx, Prometheus, and Grafana services.
+
 ![Docker Containers](screenshots/docker-containers-production.png)
-```
 
 ---
 
 ## 6️⃣ Production Health Endpoint
 
-```markdown
-![Health Endpoint](screenshots/production-health-endpoint.png)
-```
+Production health endpoint used by Docker health checks and the CI/CD deployment pipeline.
+
+![Production Health Endpoint](screenshots/production-health-endpoint.png)
 
 ---
 
 ## 7️⃣ GitHub Actions CI/CD Pipeline
 
-```markdown
-![GitHub Actions](screenshots/github-actions-pipeline-success.png)
-```
+Successful automated pipeline for validation, testing, Docker image publishing, and deployment to AWS.
+
+![GitHub Actions Pipeline](screenshots/github-actions-pipeline-success.png)
 
 ---
 
 ## 8️⃣ Docker Hub Published Images
 
-```markdown
-![Docker Hub](screenshots/dockerhub-frontend-image.png)
-```
+Automatically published production Docker images for deployment and version management.
+
+![Docker Hub Images](screenshots/dockerhub-frontend-image.png)
 
 ---
 
 ## 9️⃣ Prometheus Monitoring
 
-```markdown
-![Prometheus](screenshots/prometheus-targets.png)
-```
+Prometheus continuously collecting metrics from the FastAPI backend for monitoring and observability.
+
+![Prometheus Targets](screenshots/prometheus-targets.png)
 
 ---
 
 ## 🔟 Grafana Dashboard
 
-```markdown
-![Grafana](screenshots/grafana-dashboard.png)
-```
+Grafana dashboard visualizing application performance, request metrics, and service health.
+
+![Grafana Dashboard](screenshots/grafana-dashboard.png)
 
 ---
 
-## 1️⃣1️⃣ AWS EC2 Deployment
+## 1️⃣1️⃣ AWS EC2 Production Infrastructure
 
-```markdown
-![AWS EC2](screenshots/aws-ec2-instance.png)
-```
+AWS EC2 instance hosting the production deployment of the application.
+
+![AWS EC2 Instance](screenshots/aws-ec2-instance.png)
+
+---
+
+## 1️⃣2️⃣ AWS Security Group Configuration
+
+Inbound security rules configured to securely expose HTTP, HTTPS, and SSH access for the production environment.
+
+![AWS Security Group](screenshots/aws-security-group.png)
 
 ---
 
@@ -983,7 +991,7 @@ https://github.com/aadi090204
 
 **LinkedIn**
 
-https://www.linkedin.com/in/adithya-anil-8a247a255
+https://www.linkedin.com/in/adithya-anil-8a247a255/
 
 ---
 
